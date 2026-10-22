@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080a0d" />
+    <meta name="description" content="An interactive paper-theater experiment. Peel a painting into depth, explore it, and cross into the next image." />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Two Frames" />
+    <meta name="application-name" content="Two Frames" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <title>The World Between Two Frames</title>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="worldCanvas" aria-label="Interactive layered artwork. Use the depth slider to separate the image into spatial planes."></canvas>
+      <div class="ambient-vignette" aria-hidden="true"></div>
+      <div class="grain-wash" aria-hidden="true"></div>
+      <div id="frameOutline" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="frame-caption">SOURCE IMAGE · SPATIAL STUDY</span></div>
+
+      <header class="topbar">
+        <div class="identity">
+          <div class="monogram" aria-hidden="true"><span></span><span></span></div>
+          <div class="identity-copy">
+            <div class="eyebrow">FIELD EXPERIMENT <b>021</b></div>
+            <div class="product-name">THE WORLD <em>BETWEEN</em> TWO FRAMES</div>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="mode-indicator"><span class="live-dot"></span><span id="modeLabel">FLAT IMAGE</span><span class="mode-divider">/</span><span id="sceneCount">01 — 03</span></div>
+          <button class="chrome-button" id="importButton" type="button" aria-label="Import up to three artwork images"><span class="button-glyph">＋</span><span class="button-word">ADD ARTWORK</span></button>
+          <button class="chrome-button" id="layersButton" type="button" aria-label="Edit depth masks for this image"><span class="button-glyph">⌁</span><span class="button-word">EDIT LAYERS</span></button>
+          <button class="chrome-button" id="openProjectButton" type="button" aria-label="Open a saved project archive"><span class="button-glyph">↥</span><span class="button-word">OPEN PROJECT</span></button>
+          <button class="chrome-button" id="exportButton" type="button" aria-label="Export project as a ZIP archive"><span class="button-glyph">↧</span><span class="button-word">EXPORT</span></button>
+          <button class="square-button" id="soundButton" type="button" aria-label="Enable subtle sound" title="Sound off">◖</button>
+          <button class="square-button" id="gpuButton" type="button" aria-label="Toggle low GPU mode" title="Low GPU mode off">LQ</button>
+          <button class="square-button" id="fullscreenButton" type="button" aria-label="Enter fullscreen" title="Fullscreen">⤢</button>
+          <button class="square-button" id="moreButton" type="button" aria-label="More project controls" aria-expanded="false" title="More controls">···</button>
+        </div>
+        <div class="project-menu" id="projectMenu" aria-hidden="true">
+          <div class="menu-kicker">PROJECT CONTROLS</div>
+          <button class="menu-mobile-only" id="menuOpenProjectButton" type="button" aria-label="Open a saved project archive">OPEN PROJECT <span>↥</span></button>
+          <button class="menu-mobile-only" id="menuExportButton" type="button" aria-label="Export project as a ZIP archive">EXPORT PROJECT <span>↧</span></button>
+          <button id="resetDemoButton" type="button">RESET DEMO <span>↶</span></button>
+          <button id="deleteProjectButton" type="button">DELETE IMPORTED PROJECT <span>×</span></button>
+          <button class="menu-mobile-only" id="menuSoundButton" type="button" aria-pressed="false">SOUND OFF <span>◖</span></button>
+          <button id="installButton" type="button" hidden aria-label="Install this app on this device">INSTALL APP <span>⇩</span></button>
+          <button class="menu-mobile-only" id="menuFullscreenButton" type="button" aria-label="Enter fullscreen">ENTER FULLSCREEN <span>⤢</span></button>
+          <label class="motion-toggle"><input id="reducedMotionToggle" type="checkbox" /><span>REDUCED MOTION</span></label>
+        </div>
+      </header>
+
+      <aside id="sceneRail" class="scene-rail" aria-label="Image sequence"></aside>
+
+      <section class="scene-caption" aria-live="polite">
+        <div class="caption-index"><span id="sceneNumber">01</span><span class="caption-rule"></span><span id="sceneKind">USER ARTWORK</span></div>
+        <h1 id="sceneTitle">The World Between Two Frames</h1>
+        <p id="sceneSubtitle">A painted sea, held at the edge of becoming.</p>
+        <div class="provenance"><span class="provenance-mark"></span><span id="sceneProvenance">User-provided image · 1671 × 941</span></div>
+      </section>
+
+      <div class="depth-legend" id="depthLegend" aria-label="Separated image planes">
+        <div class="legend-heading">SPATIAL LAYERS <span>05</span></div>
+        <ol id="layerLegendList"></ol>
+      </div>
+
+      <div class="portal-note" id="portalNote" aria-live="polite"><span class="portal-note-line"></span><span id="portalNoteText">A LIGHT BOUNDARY IS WAITING</span></div>
+
+      <div class="explore-hud" id="exploreHud" aria-live="polite">
+        <div class="explore-coordinates"><span class="coordinates-label">FIELD POSITION</span><b id="fieldPosition">00.00 / 00.00</b></div>
+        <div class="explore-instruction" id="exploreInstruction">Move toward the aperture at the edge of the picture.</div>
+        <div class="move-controls" aria-label="Move through the scene">
+          <button class="move-key" id="moveLeft" type="button" aria-label="Move left">←</button>
+          <div class="move-column"><button class="move-key" id="moveForward" type="button" aria-label="Move forward">↑</button><button class="move-key" id="moveBack" type="button" aria-label="Move back">↓</button></div>
+          <button class="move-key" id="moveRight" type="button" aria-label="Move right">→</button>
+        </div>
+        <button class="approach-button" id="approachPortal" type="button">FOLLOW THE NEXT APERTURE <span>↗</span></button>
+        <button class="approach-button previous-approach" id="approachPrevious" type="button">RETURN THROUGH LAST APERTURE <span>↖</span></button>
+      </div>
+
+      <div class="editor-shell" id="editorShell" aria-hidden="true">
+        <canvas id="maskCanvas" aria-label="Draw a polygon mask over the selected artwork. Click to place points, then close the outline."></canvas>
+        <aside class="editor-panel" id="editorPanel" aria-label="Layer authoring">
+          <div class="panel-head">
+            <div><div class="eyebrow">SOURCE AUTHORING</div><h2>Draw a depth mask</h2></div>
+            <button class="panel-close" id="closeEditor" type="button" aria-label="Close layer editor">×</button>
+          </div>
+          <p class="panel-intro">Outline a region from the original pixels. This is an interpretive cutout; unseen surfaces are not reconstructed.</p>
+          <div class="editor-step"><span>01</span><div><b>Trace a region</b><small>Click 3–24 points on the image.</small></div></div>
+          <div class="editor-actions">
+            <button class="line-button" id="startMaskButton" type="button">＋ START OUTLINE</button>
+            <button class="line-button quiet" id="undoPointButton" type="button" disabled>UNDO POINT</button>
+          </div>
+          <div class="editor-field">
+            <label for="roleSelect">DEPTH ROLE</label>
+            <select id="roleSelect">
+              <option value="foreground">Foreground cutout</option>
+              <option value="subject">Subject</option>
+              <option value="architecture">Architecture</option>
+              <option value="atmosphere">Atmosphere</option>
+              <option value="backdrop">Distant backdrop</option>
+            </select>
+          </div>
+          <div class="editor-field range-field">
+            <label for="featherRange">EDGE FEATHER <span id="featherValue">1.0%</span></label>
+            <input id="featherRange" type="range" min="0" max="8" step="0.5" value="1" />
+          </div>
+          <div class="editor-field range-field">
+            <label for="layerDistance">LAYER DISTANCE <span id="distanceValue">0.64</span></label>
+            <input id="layerDistance" type="range" min="0.1" max="1.5" step="0.01" value="0.64" />
+          </div>
+          <div class="editor-actions finish-actions">
+            <button class="line-button quiet" id="clearMaskButton" type="button">CLEAR</button>
+            <button class="solid-button" id="saveMaskButton" type="button" disabled>SAVE REGION</button>
+          </div>
+          <div class="layer-list-head"><span>DEFINED PLANES</span><span id="layerCountLabel">05</span></div>
+          <div id="editorLayerList" class="editor-layer-list"></div>
+          <div class="editor-footer"><span class="tiny-status"></span><span id="editorSaveStatus">Changes save locally.</span></div>
+        </aside>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden />
+      <input id="projectInput" type="file" accept=".zip,application/zip" hidden />
+
+      <footer class="bottom-console">
+        <div class="console-main">
+          <button class="console-icon" id="returnButton" type="button" aria-label="Return to the frame" title="Return to frame">↶</button>
+          <div class="depth-control">
+            <div class="slider-heading"><label for="depthSlider">DEPTH</label><span id="depthValue">00</span><span class="slider-unit">%</span><span class="slider-hint" id="sliderHint">PULL THE FRAME APART</span></div>
+            <input id="depthSlider" type="range" min="0" max="100" value="0" step="1" aria-label="Separate artwork layers to reveal depth" />
+            <div class="slider-scale"><span>FLAT</span><span>SEPARATED</span></div>
+          </div>
+          <button class="enter-button" id="enterButton" type="button" disabled><span>ENTER IMAGE</span><b>↗</b></button>
+          <button class="reset-button" id="resetButton" type="button" title="Return to the original unaltered artwork">RESET TO ORIGINAL ART</button>
+        </div>
+        <div class="console-foot">
+          <span id="statusText"><i></i> ORIGINAL PIXELS · PROVISIONAL SPATIAL INTERPRETATION</span>
+          <span class="keyboard-hint">ARROWS TO MOVE <b>·</b> ESC TO RETURN</span>
+        </div>
+      </footer>
+
+      <div class="loading-screen" id="loadingScreen"><div class="loading-mark"><span></span><span></span><span></span></div><div class="loading-title">UNFOLDING THE FRAME</div><div class="loading-rule"><i></i></div></div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

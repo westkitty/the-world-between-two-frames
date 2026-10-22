@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<defs>
+  <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#172432"/><stop offset=".47" stop-color="#62717b"/><stop offset="1" stop-color="#bda990"/></linearGradient>
+  <linearGradient id="water" x2="0" y2="1"><stop stop-color="#637981"/><stop offset="1" stop-color="#111c25"/></linearGradient>
+  <linearGradient id="glass" x2=".85" y2="1"><stop stop-color="#d2d5c8" stop-opacity=".86"/><stop offset=".28" stop-color="#77a8b1" stop-opacity=".57"/><stop offset=".68" stop-color="#203949" stop-opacity=".84"/><stop offset="1" stop-color="#0d1822"/></linearGradient>
+  <linearGradient id="glow" x2="0" y2="1"><stop stop-color="#e9c99a" stop-opacity=".88"/><stop offset="1" stop-color="#e9c99a" stop-opacity="0"/></linearGradient>
+  <radialGradient id="moon"><stop stop-color="#fff2d4"/><stop offset="1" stop-color="#e2bb8d" stop-opacity=".24"/></radialGradient>
+  <filter id="mist"><feGaussianBlur stdDeviation="18"/></filter>
+  <pattern id="grain" width="52" height="52" patternUnits="userSpaceOnUse"><circle cx="4" cy="9" r="1" fill="#e8ded0" opacity=".14"/><circle cx="31" cy="34" r=".8" fill="#d6e1e1" opacity=".11"/><path d="M12 45h8M39 6h5" stroke="#d6e1e1" stroke-width=".7" opacity=".08"/></pattern>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1250" cy="186" r="71" fill="url(#moon)"/>
+<path d="M0 420 Q180 368 332 400 T650 390 T960 410 T1270 376 T1600 411 V550 H0Z" fill="#293a45" opacity=".75"/>
+<path d="M0 462 L92 401 172 443 277 353 374 446 487 373 582 445 684 386 798 458 912 369 1038 450 1122 393 1226 443 1360 352 1486 438 1600 376 V566 H0Z" fill="#354852" opacity=".82"/>
+<path d="M0 482 L98 420 168 468 276 375 365 467 484 395 571 462 685 407 790 472 910 392 1030 464 1124 411 1226 463 1362 370 1491 458 1600 396" fill="none" stroke="#aeb2a7" stroke-width="5" opacity=".46"/>
+<rect y="495" width="1600" height="405" fill="url(#water)"/>
+<path d="M0 540 Q200 517 390 545 T760 534 T1150 545 T1600 525" fill="none" stroke="#ded3bd" stroke-opacity=".44" stroke-width="4"/>
+<path d="M0 611 Q180 574 350 610 T740 598 T1120 617 T1600 584 M0 702 Q220 665 422 700 T820 680 T1200 714 T1600 680 M0 800 Q200 770 444 805 T840 790 T1250 817 T1600 776" fill="none" stroke="#a8bdbe" stroke-opacity=".3" stroke-width="3"/>
+<!-- a procession of transparent orchard arches -->
+<g fill="none" stroke="url(#glass)" stroke-linecap="round">
+ <path d="M174 640 C150 404 210 238 330 209 C461 177 528 347 489 599" stroke-width="38" opacity=".7"/>
+ <path d="M413 634 C385 367 461 110 608 95 C766 78 809 318 757 618" stroke-width="48" opacity=".92"/>
+ <path d="M747 627 C704 372 777 177 901 166 C1025 155 1091 358 1045 631" stroke-width="35" opacity=".71"/>
+ <path d="M1008 624 C982 411 1041 274 1158 251 C1270 229 1321 406 1292 640" stroke-width="27" opacity=".59"/>
+ <path d="M1270 622 C1255 473 1312 351 1402 350 C1482 350 1514 478 1501 644" stroke-width="20" opacity=".48"/>
+</g>
+<g fill="none" stroke="#e0c49d" stroke-opacity=".45" stroke-width="2">
+ <path d="M174 640 C150 404 210 238 330 209 C461 177 528 347 489 599"/>
+ <path d="M413 634 C385 367 461 110 608 95 C766 78 809 318 757 618"/>
+ <path d="M747 627 C704 372 777 177 901 166 C1025 155 1091 358 1045 631"/>
+</g>
+<!-- bridge and distant archive towers -->
+<path d="M0 641 Q315 592 612 630 T1067 623 T1600 603 L1600 661 Q1270 684 1060 676 T600 678 T0 696Z" fill="#1b2a34" stroke="#9aa7a2" stroke-opacity=".37" stroke-width="3"/>
+<g fill="#111c25" stroke="#c6ad8e" stroke-opacity=".44" stroke-width="3">
+ <path d="M140 634h41v-116l20-24 20 24v123h32v-79l21-21 21 21v76h46v-153l30-38 30 38v159H140Z"/>
+ <path d="M1048 625h38V506l25-33 25 33v119h31V554l23-23 23 23v73h42V450l31-40 31 40v165h43v-92l27-27 27 27v92h90v41h-448Z"/>
+ <path d="M625 633h33V529l22-29 22 29v104h33V566l20-20 20 20v67h44v36H625Z"/>
+</g>
+<!-- lit windows -->
+<g fill="#e6bc84" opacity=".84"><path d="M190 552h6v12h-6zm22 0h6v12h-6zm52 18h6v12h-6zm61-43h7v14h-7zm721-19h7v15h-7zm101 27h7v16h-7zm88-32h7v17h-7zm118 13h7v17h-7z"/></g>
+<!-- nearest reedlike glass fragments -->
+<g fill="#101c24" stroke="#819ba0" stroke-opacity=".65" stroke-width="3">
+ <path d="M0 900 80 713l28 187Zm166 0 84-214 35 214Zm126 0 64-144 26 144Zm990 0 38-165 44 165Zm129 0 90-232 35 232Zm122 0 47-146 32 146Z"/>
+</g>
+<path d="M0 502h1600v398H0Z" fill="url(#grain)" opacity=".55"/>
+<ellipse cx="776" cy="614" rx="600" ry="80" fill="#f0dec3" opacity=".1" filter="url(#mist)"/>
+<rect width="1600" height="900" fill="url(#grain)" opacity=".55"/>
+</svg>

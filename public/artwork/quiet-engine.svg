@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<defs>
+ <linearGradient id="stone" x2="0" y2="1"><stop stop-color="#53616b"/><stop offset=".38" stop-color="#263542"/><stop offset="1" stop-color="#0b1219"/></linearGradient>
+ <linearGradient id="vault" x2="0" y2="1"><stop stop-color="#91a4a4" stop-opacity=".48"/><stop offset="1" stop-color="#22313b" stop-opacity=".04"/></linearGradient>
+ <radialGradient id="core"><stop stop-color="#fff0c4"/><stop offset=".15" stop-color="#d4a879"/><stop offset=".44" stop-color="#506d77"/><stop offset=".8" stop-color="#19232c"/><stop offset="1" stop-color="#0b1118"/></radialGradient>
+ <linearGradient id="lamp" x2="0" y2="1"><stop stop-color="#f3c886" stop-opacity=".8"/><stop offset="1" stop-color="#f3c886" stop-opacity="0"/></linearGradient>
+ <pattern id="lines" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M0 0h26M0 13h26" stroke="#d5d8cf" stroke-opacity=".045"/><circle cx="13" cy="7" r="1" fill="#e9d7b7" opacity=".08"/></pattern>
+ <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect width="1600" height="900" fill="#0d151d"/>
+<path d="M0 0h1600v436Q1300 370 1070 433T670 417T0 460Z" fill="url(#stone)"/>
+<!-- ribbed vaulted ceiling -->
+<g fill="none" stroke="#8e9b99" stroke-opacity=".35">
+ <path d="M-60 560C70 40 350-35 512 550M130 540C245 100 453 40 604 533M388 530C486 137 667 100 798 531M685 534C794 116 1010 55 1135 536M991 533C1107 62 1341 47 1504 554M1250 538C1377 170 1532 136 1664 553" stroke-width="13"/>
+ <path d="M-30 575C106 67 357 13 525 557M176 566C292 129 473 78 620 548M430 549C525 167 672 130 810 547M738 553C840 155 1024 93 1154 550M1048 554C1162 110 1351 85 1520 568" stroke-width="3"/>
+</g>
+<path d="M0 480Q240 417 478 469T914 465T1302 455T1600 480V760H0Z" fill="#17242e"/>
+<!-- suspended core and concentric maintenance rings -->
+<g transform="translate(822 399)">
+ <ellipse rx="286" ry="166" fill="none" stroke="#c4b49a" stroke-opacity=".42" stroke-width="5" transform="rotate(-16)"/>
+ <ellipse rx="240" ry="137" fill="none" stroke="#738c92" stroke-opacity=".65" stroke-width="12" transform="rotate(19)"/>
+ <ellipse rx="198" ry="114" fill="none" stroke="#b2afa0" stroke-opacity=".3" stroke-width="3" transform="rotate(-28)"/>
+ <circle r="113" fill="url(#core)" stroke="#dec399" stroke-opacity=".62" stroke-width="5"/>
+ <circle r="81" fill="none" stroke="#adc3bf" stroke-opacity=".58" stroke-width="4" stroke-dasharray="7 14"/>
+ <circle r="46" fill="none" stroke="#e1c49a" stroke-opacity=".78" stroke-width="2"/>
+ <circle r="18" fill="#f2dfba" opacity=".9"/>
+ <path d="M-280 8H-112M112-11h182M-2-170v54M7 113v95" stroke="#d4bf9a" stroke-opacity=".65" stroke-width="4"/>
+</g>
+<path d="M822 510v216" stroke="url(#lamp)" stroke-width="32" opacity=".72"/>
+<ellipse cx="822" cy="734" rx="220" ry="50" fill="#ddb27e" opacity=".16" filter="url(#blur)"/>
+<!-- colossal side pillars -->
+<g fill="#101a23" stroke="#879897" stroke-opacity=".54" stroke-width="5">
+ <path d="M32 235h112v510H32zM15 220h146v33H15zM27 730h122v38H27zM266 308h72v416h-72zM251 292h102v28H251zM262 710h82v32h-82z"/>
+ <path d="M1424 239h143v513h-143zM1404 220h181v37h-181zM1417 728h157v42h-157zM1290 302h80v427h-80zM1275 284h112v32h-112z"/>
+</g>
+<g fill="#d9b37f" opacity=".72"><path d="M65 300h14v24H65zm48 0h14v24h-14zm169 67h13v29h-13zm1195-38h15v28h-15zm56 0h15v28h-15zm-225 84h13v24h-13z"/></g>
+<!-- distant walkways and structural rails -->
+<path d="M0 704Q289 662 510 690T954 690T1305 676T1600 707v38q-354-35-635 5t-504 3T0 761Z" fill="#24343d" stroke="#abb3aa" stroke-opacity=".45" stroke-width="4"/>
+<path d="M0 792h1600v108H0Z" fill="url(#stone)"/>
+<path d="M0 784h1600M0 839h1600M0 886h1600" stroke="#aeb7af" stroke-opacity=".25" stroke-width="4"/>
+<g fill="#111c24" stroke="#8fa09d" stroke-opacity=".6" stroke-width="4">
+ <path d="M80 792v-94h54v94zm188 0V727h48v65zm1050 0v-88h53v88zm152 0V701h66v91z"/>
+ <path d="M0 832h244v28H0zm1370 0h230v28h-230z"/>
+</g>
+<path d="M0 0h1600v900H0Z" fill="url(#lines)"/>
+<g fill="#e2c69d" opacity=".42"><circle cx="220" cy="444" r="3"/><circle cx="391" cy="557" r="2"/><circle cx="1166" cy="512" r="3"/><circle cx="1399" cy="593" r="2"/><circle cx="563" cy="323" r="2"/><circle cx="1105" cy="278" r="2"/></g>
+</svg>

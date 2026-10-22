@@ -1,0 +1,24 @@
+{
+  "id": "/the-world-between-two-frames/",
+  "name": "The World Between Two Frames",
+  "short_name": "Two Frames",
+  "description": "An interactive paper-theater experiment. Peel a painting into depth, explore it, and cross into the next image.",
+  "start_url": "/the-world-between-two-frames/",
+  "scope": "/the-world-between-two-frames/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "background_color": "#080a0d",
+  "theme_color": "#080a0d",
+  "categories": ["entertainment", "graphics"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "screenshots/wide.jpg", "sizes": "1480x924", "type": "image/jpeg", "form_factor": "wide", "label": "The panorama held flat in its frame on a tablet" },
+    { "src": "screenshots/narrow.jpg", "sizes": "924x1480", "type": "image/jpeg", "form_factor": "narrow", "label": "Portrait view of the frame and depth console" }
+  ]
+}
